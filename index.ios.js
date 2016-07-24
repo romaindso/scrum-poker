@@ -10,46 +10,86 @@ import {
   StyleSheet,
   Text,
   View,
-  TouchableHighlight
+  TouchableHighlight,
+  Navigator
 } from 'react-native';
 
 const storyPointsArr = ['0', '1', '2', '3', '5', '8', '13', '20', '40', '100', '∞', 'coffee'];
 
-class ScrumPoker extends Component {
+class App extends Component {
 
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       currentCard: ''
     };
   }
 
-  onPressButton(elm){
+  onPressCard(elm, navigator){
     this.setState({currentCard: elm})
+    this.navigate(navigator, 'Card');
   }
 
-  render() {
+  navigate(navigator, name, type='Normal'){
+    navigator.push({
+      name,
+      type
+    });
+  }
+
+  renderScene(route, navigator){
+  	if(route.name == 'CardsList'){
+    	return (
+        <View style={styles.container} navigator={navigator}>
+          {storyPointsArr.map((elm, index) => {
+            return (
+              <TouchableHighlight
+                key={index}
+                style={styles.card}
+                underlayColor='#05A5D1'
+                onPress={() => {this.onPressCard(elm, navigator)}}
+                >
+                <Text style={styles.number}>{elm}</Text>
+              </TouchableHighlight>
+            )
+          })}
+        </View>
+      )
+    } else if(route.name == 'Card'){
+      return (
+        <View style={styles.container} navigator={navigator}>
+          <TouchableHighlight
+            onPress={() => {this.navigate(navigator, 'CardsList', 'Modal')}}
+          >
+            <Text style={{color: 'white', fontSize: 80}}>{this.state.currentCard}</Text>
+          </TouchableHighlight>
+        </View>
+      )
+    } else {
+      return (
+        <View style={styles.container} navigator={navigator}>
+          <Text style={{color: 'white', fontSize: 12}}>Routing error</Text>
+        </View>
+      )
+    }
+  }
+
+  configureScene(route, routeStack){
+    if(route.type === 'Modal') {
+      return Navigator.SceneConfigs.FloatFromBottom
+    }
+    return Navigator.SceneConfigs.PushFromRight
+  }
+
+  render(){
     return (
-      <View style={styles.container}>
-        {storyPointsArr.map((elm, index) => {
-          return (
-            <TouchableHighlight
-              key={index}
-              style={styles.card}
-              underlayColor='#05A5D1'
-              onPress={() => {this.onPressButton(elm)}}
-              >
-              <Text style={styles.number}>{elm}</Text>
-            </TouchableHighlight>
-          )
-        })}
-        {this.state.currentCard.length ?
-          <View style={{width: 100, height: 50, backgroundColor: 'white'}}>
-            <Text style={{color: 'black'}}>{this.state.currentCard}</Text>
-          </View>
-        : null }
-      </View>
-    );
+      <Navigator
+      	style={{ flex:1 }}
+        initialRoute={{ name: 'CardsList' }}
+        renderScene={this.renderScene.bind(this)}
+        configureScene={this.configureScene.bind(this)}
+      />
+    )
   }
 }
 
@@ -81,4 +121,4 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('ScrumPoker', () => ScrumPoker);
+AppRegistry.registerComponent('App', () => App);
