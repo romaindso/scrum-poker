@@ -16,7 +16,7 @@ import {
 import Card from './components/Card.js';
 import CardsList from './components/CardsList.js';
 
-class App extends Component {
+class ScrumPoker extends Component {
 
   constructor(props){
     super(props);
@@ -70,4 +70,4 @@ class App extends Component {
   }
 }
 
-AppRegistry.registerComponent('App', () => App);
+AppRegistry.registerComponent('ScrumPoker', () => ScrumPoker);
