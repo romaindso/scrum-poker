@@ -47,11 +47,7 @@ class App extends Component {
         <Card currentCard={this.state.currentCard} navigator={navigator} navigate={this.navigate} />
       )
     } else {
-      return (
-        <View style={styles.container} navigator={navigator}>
-          <Text style={{color: 'white', fontSize: 12}}>Routing error</Text>
-        </View>
-      )
+      this.navigate(navigator, 'CardsList', 'Modal')
     }
   }
 
@@ -73,33 +69,5 @@ class App extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    backgroundColor: '#413E45'
-  },
-  card: {
-    width: 80,
-    height: 100,
-    marginTop: 10,
-    marginLeft: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#1DA1F2',
-    borderRadius: 8,
-    borderWidth: 3,
-    borderColor: 'white',
-  },
-  number: {
-    fontSize: 20,
-    color: 'white'
-  }
-});
 
 AppRegistry.registerComponent('App', () => App);
