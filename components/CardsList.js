@@ -6,7 +6,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 
-const storyPointsArr = ['0', '1', '2', '3', '5', '8', '13', '20', '40', '100', '∞', 'coffee'];
+const storyPointsArr = ['0', '1/2', '1', '2', '3', '5', '8', '13', '20', '40', '100', '∞', '?', 'coffee'];
 
 class CardsList extends Component {
 
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 20,
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flexDirection: 'row',
     flexWrap: 'wrap',
     alignItems: 'center',
@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#1DA1F2',
-    borderRadius: 8,
-    borderWidth: 3,
+    borderRadius: 10,
+    borderWidth: 4,
     borderColor: 'white',
   },
   number: {
-    fontSize: 20,
+    fontSize: 22,
     color: 'white'
   }
 });
