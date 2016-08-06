@@ -11,14 +11,13 @@ class Card extends Component {
   render(){
     return (
       <View style={styles.container}>
-        <View style={styles.card}>
-          <TouchableHighlight
-            underlayColor='#05A5D1'
-            onPress={() => {this.props.navigate(this.props.navigator, 'CardsList', 'Left')}}
-          >
-            <Text style={{color: 'white', fontSize: 80}}>{this.props.currentCard}</Text>
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight
+          style={styles.card}
+          underlayColor='#05A5D1'
+          onPress={() => {this.props.navigate(this.props.navigator, 'CardsList', 'Left')}}
+        >
+          <Text style={{color: 'white', fontSize: 80}}>{this.props.currentCard}</Text>
+        </TouchableHighlight>
       </View>
     )
   }
