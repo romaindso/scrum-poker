@@ -46,13 +46,13 @@ class App extends Component {
         <Card currentCard={this.state.currentCard} navigator={navigator} navigate={this.navigate} />
       )
     } else {
-      this.navigate(navigator, 'CardsList', 'Modal');
+      this.navigate(navigator, 'CardsList', 'Left');
     }
   }
 
   configureScene(route, routeStack){
-    if(route.type === 'Modal') {
-      return Navigator.SceneConfigs.FloatFromBottom;
+    if(route.type === 'Left') {
+      return Navigator.SceneConfigs.FloatFromLeft;
     }
     return Navigator.SceneConfigs.PushFromRight;
   }

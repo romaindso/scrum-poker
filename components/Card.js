@@ -14,7 +14,7 @@ class Card extends Component {
         <View style={styles.card}>
           <TouchableHighlight
             underlayColor='#05A5D1'
-            onPress={() => {this.props.navigate(this.props.navigator, 'CardsList', 'Modal')}}
+            onPress={() => {this.props.navigate(this.props.navigator, 'CardsList', 'Left')}}
           >
             <Text style={{color: 'white', fontSize: 80}}>{this.props.currentCard}</Text>
           </TouchableHighlight>
